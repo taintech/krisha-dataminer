@@ -21,7 +21,7 @@ case class Entity(id: Long, category: String,
                   contacts: String,
                   profileUrl: String,
                   summaryHtml: String,
-                  profile: String) {
+                  profileHtml: String) {
   override def toString =
     s"""Entity{
   id: $id, category: $category,
@@ -29,10 +29,10 @@ case class Entity(id: Long, category: String,
   city: $city,region: $region,address: $address,
   postDate: $postDate, condition: $condition, floor: $floor,
   ouseDesc: $houseDesc, contactType: $contactType, contacts: $contacts,
-  profileUrl: $profileUrl,summaryHtml: $summaryHtml,profile: $profile
+  profileUrl: $profileUrl,summaryHtml: $summaryHtml,profileHtml: $profileHtml
 }"""
 }
 
 object Entity {
-  def createEmptyEntity() = Entity(0L, "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "")
+  def empty() = Entity(0L, "", "", "", 0, "", "", "", "", "", "", "", "", "", "", "", "")
 }
