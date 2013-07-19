@@ -1,0 +1,30 @@
+most important parameters are:
+price, rooms, square meter, city, region, address,
+postDate, contacts, contactType, condition, floor, houseDesc
+
+
+Iterator{
+    listUrl: ""
+    nextUrl: ""
+}
+
+
+Entity{
+    id: 101
+    type: "apartment"
+    price: "$100"
+    squareMeter: "100"
+    rooms: 2
+    city: "Astana"
+    region: "Region"
+    address: "Street 13"
+    postDate: "22.01.2013"
+    condition: "euro"
+    floor: "13 from 20"
+    houseDesc: "blocks 2013"
+    contactType: "owner, agent"
+    contacts: "+7 ***"
+    profileUrl: "url"
+    summaryHtml: "html"
+    profile: "html"
+}
