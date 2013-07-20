@@ -2,11 +2,13 @@ package samples
 
 import org.junit._
 import Assert._
-import com.taintech.krisha.dataminer.{Greeter, Entity, Utils, Miner}
+import com.taintech.krisha.dataminer.{Entity, Utils, Miner}
 import com.taintech.krisha.dataminer.Constants._
 import org.jsoup.nodes.{Document, Element}
 import com.taintech.krisha.dataminer.actors.DB
 import akka.actor.{ActorSystem, Props}
+import java.sql.{SQLException, Connection}
+import org.apache.log4j.LogManager
 
 @Test
 class AppTest{
@@ -88,12 +90,39 @@ class FunctionsTest {
 
 
 @Test
-class DBTest{
+class DatabaseTest{
+
+  val logger = LogManager.getLogger("DatabaseTest")
+
+  @Test
+  def testSelect{
+    var conn: Connection  = null
+    try{
+      conn = DB.createConnection("test","","")
+      val stmt = conn.createStatement()
+      val rs = stmt.executeQuery("""select 1 "test" from dual""")
+      assertTrue(rs.next())
+      assertEquals(rs.getInt("test"),1)
+      rs.close()
+      stmt.close()
+    }catch {
+      case e: Exception => logger.error("Problem with database!", e)
+    }
+    finally {
+      conn.close()
+    }
+
+  }
+}
+
+@Test
+class DBActorTest{
   @Test
   def testMessage = {
     val system = ActorSystem()
-    val db = system.actorOf(Props[DB])
+    val db = system.actorOf(Props[DB],"db")
     db!Entity.empty()
+    system.shutdown()
   }
 }
 

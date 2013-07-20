@@ -36,6 +36,13 @@
             <version>2.2.0</version>
         </dependency>
 
+        <!-- mysql jdbc driver -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.25</version>
+        </dependency>
+
         <!-- jsoup HTML parser library @ http://jsoup.org/ -->
         <dependency>
             <groupId>org.jsoup</groupId>
@@ -44,7 +51,6 @@
         </dependency>
 
         <!-- Logging -->
-
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>

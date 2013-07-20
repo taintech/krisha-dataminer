@@ -4,6 +4,7 @@ import java.io.File
 import org.jsoup.Jsoup
 import Constants._
 import org.jsoup.nodes.{Element, Document}
+import java.sql.DriverManager
 
 /**
  * Author: Rinat Tainov
