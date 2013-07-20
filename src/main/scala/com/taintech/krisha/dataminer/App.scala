@@ -34,7 +34,7 @@ object App {
           val item = iterator.next()
           Thread.sleep(100L)
           val url2 = item.select(".title a").attr("href")
-          logger.info("opening profile url:" + url2)
+          logger.info("opening profile url: " + url2)
           if (isValidUrl(url2)) try {
             db ! Miner(item, Jsoup.connect(url2).get()).entity
           } catch {
