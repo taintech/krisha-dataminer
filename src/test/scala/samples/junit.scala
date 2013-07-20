@@ -2,10 +2,11 @@ package samples
 
 import org.junit._
 import Assert._
-import com.taintech.krisha.dataminer.{Entity, Utils, Miner}
+import com.taintech.krisha.dataminer.{Greeter, Entity, Utils, Miner}
 import com.taintech.krisha.dataminer.Constants._
 import org.jsoup.nodes.{Document, Element}
 import com.taintech.krisha.dataminer.actors.DB
+import akka.actor.{ActorSystem, Props}
 
 @Test
 class AppTest{
@@ -90,6 +91,9 @@ class FunctionsTest {
 class DBTest{
   @Test
   def testMessage = {
+    val system = ActorSystem()
+    val db = system.actorOf(Props[DB])
+    db!Entity.empty()
   }
 }
 
