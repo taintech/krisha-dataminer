@@ -2,6 +2,22 @@ most important parameters are:
 price, rooms, square meter, city, region, address,
 postDate, contacts, contactType, condition, floor, houseDesc
 
+after analysing data of successful parsing seemed that can parse only
+thousand entity per list, need to make changes to parse
+multiple lists with thousand elements, form multiple urls
+for example:
+
+firsts
+http://krisha.kz/prodazha/kvartiry/astana/?das[live.rooms]=1
+http://krisha.kz/prodazha/kvartiry/astana/?page=67&das%5Blive.rooms%5D=1
+
+middle
+http://krisha.kz/prodazha/kvartiry/astana/?das[live.rooms]=3
+http://krisha.kz/prodazha/kvartiry/astana/?page=67&das%5Blive.rooms%5D=3
+
+lasts
+http://krisha.kz/prodazha/kvartiry/astana/?das[live.rooms]=5.999
+http://krisha.kz/prodazha/kvartiry/astana/?page=18&das%5Blive.rooms%5D=5.999
 
 Iterator{
     listUrl: ""
