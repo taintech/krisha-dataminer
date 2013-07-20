@@ -23,19 +23,19 @@ object App {
     val system = ActorSystem()
     val db = system.actorOf(Props[DB],"db")
     logger.info("Actors are started.")
-    for (i <- 1 to 2) {
+    for (i <- 1 to 67) {
       val url1 = Constants.APARTMENTS_LIST_PAGE_URL.format(i)
-      println("url: " + url1)
+      logger.info("list url: " + url1)
       if (isValidUrl(url1)) try {
         val doc = Jsoup.connect(url1).get()
         val iterator = doc.select(".item").iterator()
-        println("step %s".format(i))
+        logger.info("opening list page number %s".format(i))
         Thread.sleep(100L)
         while (iterator.hasNext) {
           val item = iterator.next()
           Thread.sleep(100L)
           val url2 = item.select(".title a").attr("href")
-          println(url2)
+          logger.info("opening profile url:"+url2)
           if (isValidUrl(url2)) try {
             db ! Miner(item, Jsoup.connect(url2).get()).entity
           } catch {

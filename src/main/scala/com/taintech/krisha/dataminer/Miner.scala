@@ -82,7 +82,7 @@ class Miner(val item: Element, val profile: Document) {
       addressArray(0), addressArray(1), addressArray(2),
       postDate.getOrElse(""), textMapWrapper("condition").getOrElse(""), textMapWrapper("floor").getOrElse(""),
       textMapWrapper("houseDesc").getOrElse(""), contactType.getOrElse(""), "",
-      profile.baseUri(), item.toString, profile.toString
+      profile.baseUri(), item.toString, profile.select("div.content").toString
     )
 
   def textMapWrapper(key: String) = if(textMap.contains(key)) textMap(key) else None
@@ -96,5 +96,8 @@ object Miner {
 
   def extractIdFromUrl(url: String) = url.split("/").last.toLong
 
-  def extractCategoryFromUrl(url: String) = url.split("/").last
+  def extractCategoryFromUrl(url: String) = {
+    if (!url.contains("?")) url.split("/").last
+    else url.split("/").reverse(1)
+  }
 }
