@@ -22,15 +22,18 @@ case class Entity(id: Long, category: String,
                   profileUrl: String,
                   summaryHtml: String,
                   profileHtml: String) {
-  override def toString =
+  override def toString = {
+    val summarySize = summaryHtml.size
+    val profileSize = profileHtml.size
     s"""Entity{
   id: $id, category: $category,
   price: $price,squareMeter: $squareMeter,rooms: $rooms,
   city: $city,region: $region,address: $address,
   postDate: $postDate, condition: $condition, floor: $floor,
   ouseDesc: $houseDesc, contactType: $contactType, contacts: $contacts,
-  profileUrl: $profileUrl,summaryHtml: $summaryHtml,profileHtml: $profileHtml
+  profileUrl: $profileUrl,summary html size is $summarySize,profile html size is $profileSize
 }"""
+  }
 }
 
 object Entity {

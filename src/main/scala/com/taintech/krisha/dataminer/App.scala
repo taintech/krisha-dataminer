@@ -2,6 +2,7 @@ package com.taintech.krisha.dataminer
 
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
+import org.apache.log4j.LogManager
 
 /**
  * Author: Rinat Tainov
@@ -9,15 +10,18 @@ import org.jsoup.nodes.Element
  * Date: 7/19/13
  * Time: 5:03 AM
  */
-object App {
+object App{
+
+  val logger = LogManager.getLogger(App.getClass)
 
   def foo(x: Array[String]) = x.foldLeft("")((a, b) => a + b)
 
   def main(args: Array[String]) {
-    //    println( "Hello World!" )
+        println( "Hello World!" )
+    logger.info("Hello logger!")
     //    println("concat arguments = " + foo(args))
     //    Console println Utils.parseSnippet("item.html").select(".title a").attr("href")
-    for (i <- 1 to 2) yield {
+    for (i <- 1 to 2) {
       val url1 = Constants.APARTMENTS_LIST_PAGE_URL.format(i)
       println("url: " + url1)
       if (isValidUrl(url1)) try{

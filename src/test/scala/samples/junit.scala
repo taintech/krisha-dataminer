@@ -5,6 +5,7 @@ import Assert._
 import com.taintech.krisha.dataminer.{Entity, Utils, Miner}
 import com.taintech.krisha.dataminer.Constants._
 import org.jsoup.nodes.{Document, Element}
+import com.taintech.krisha.dataminer.actors.DB
 
 @Test
 class AppTest{
@@ -49,11 +50,55 @@ class MinerTest {
 }
 
 @Test
+class MinerEmptyTest {
+
+  val item: Element = Utils.parseSnippet("item-empty.html")
+  val profile: Document = Utils.parseSnippet("profile-content-empty.html","http://krisha.kz/a/show/6628069")
+  val miner = Miner(item, profile)
+
+  @Test
+  def testTextMap() = assertTrue(miner.textMap.isEmpty)
+
+  @Test
+  def testForEmptyEntity() = assertEquals(miner.entity.id,Entity.empty())
+
+  @Test
+  def testForEntityProps() = {
+    assertEquals(miner.entity.id,0L)
+    assertEquals(miner.entity.category,"")
+    assertEquals(miner.entity.price,"")
+    assertEquals(miner.entity.squareMeter,"")
+    assertEquals(miner.entity.rooms,0)
+    assertEquals(miner.entity.city,"")
+    assertEquals(miner.entity.region,"")
+    assertEquals(miner.entity.address,"")
+    assertEquals(miner.entity.postDate,"")
+    assertEquals(miner.entity.condition,"")
+    assertEquals(miner.entity.floor,"")
+    assertEquals(miner.entity.houseDesc,"")
+    assertEquals(miner.entity.contactType,"")
+    //    assertEquals(miner.entity.contacts,"")
+    assertEquals(miner.entity.profileUrl,"")
+    assertEquals(miner.entity.summaryHtml,"")
+    assertEquals(miner.entity.profileHtml,"")
+
+  }
+}
+
+@Test
 class FunctionsTest {
   @Test
   def testIdExtractor = assertEquals(Miner.extractIdFromUrl("http://krisha.kz/a/show/6628069"),6628069)
   @Test
   def testCategoryExtractor = assertEquals(Miner.extractCategoryFromUrl(APARTMENTS_LIST_URL),"kvartiry")
+}
+
+
+@Test
+class DBTest{
+  @Test
+  def testMessage = {
+  }
 }
 
 
