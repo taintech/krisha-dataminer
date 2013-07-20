@@ -12,7 +12,6 @@ import org.apache.log4j.LogManager
  */
 class Miner(val item: Element, val profile: Document) {
 
-  //TODO Resolve problem with no such element
   val textMap = {
     var map = Map.empty[String, Option[String]]
     try {
