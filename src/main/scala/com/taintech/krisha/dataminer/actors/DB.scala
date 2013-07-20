@@ -5,6 +5,7 @@ import akka.actor.Actor
 import akka.event.Logging
 import java.sql.{PreparedStatement, Connection, DriverManager}
 import DB._
+import org.apache.log4j.LogManager
 
 /**
  * Author: Rinat Tainov
@@ -13,7 +14,7 @@ import DB._
  * Time: 2:22 PM
  */
 class DB extends Actor{
-  val log = Logging(context.system, this)
+  val logger = LogManager.getLogger(DB.getClass)
   var conn: Connection = null
   var stmt: PreparedStatement = null
 
@@ -28,13 +29,13 @@ class DB extends Actor{
   }
 
   def receive = {
-    case entity: Entity if entity.equals(Entity.empty()) => log.info("empty message")
+    case entity: Entity if entity.equals(Entity.empty()) => logger.info("empty message")
     case entity: Entity => {
-      log.info("received message start processing")
+      logger.info("received message start processing")
       save(entity)
-      log.info("entity saved")
+      logger.info("entity saved")
     }
-    case _ ⇒ log.info("received unknown message")
+    case _ ⇒ logger.warn("received unknown message")
   }
 
   def save(entity: Entity)  = try {
@@ -57,7 +58,7 @@ class DB extends Actor{
     stmt.setString(17, entity.profileHtml)
     stmt.executeUpdate()
   } catch {
-    case e: Exception => log.error("Error saving entity.",e.printStackTrace())
+    case e: Exception => logger.error("Error saving entity.",e)
   }
 }
 
