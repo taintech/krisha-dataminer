@@ -79,13 +79,14 @@ class Miner(val item: Element, val profile: Document) {
   val entity: Entity =
     Entity(
       extractIdFromUrl(profile.baseUri()), extractCategoryFromUrl(item.baseUri()),
-      profile.select("span.price").text(), textMap("squareMeter").getOrElse(""), rooms.getOrElse(0),
+      profile.select("span.price").text(), textMapWrapper("squareMeter").getOrElse(""), rooms.getOrElse(0),
       addressArray(0), addressArray(1), addressArray(2),
-      postDate.getOrElse(""), textMap("condition").getOrElse(""), textMap("floor").getOrElse(""),
-      textMap("houseDesc").getOrElse(""), contactType.getOrElse(""), "",
+      postDate.getOrElse(""), textMapWrapper("condition").getOrElse(""), textMapWrapper("floor").getOrElse(""),
+      textMapWrapper("houseDesc").getOrElse(""), contactType.getOrElse(""), "",
       profile.baseUri(), item.toString, profile.toString
     )
 
+  def textMapWrapper(key: String) = if(textMap.contains(key)) textMap(key) else None
 }
 
 object Miner {

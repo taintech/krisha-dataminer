@@ -60,12 +60,7 @@ class MinerEmptyTest {
   def testTextMap() = assertTrue(miner.textMap.isEmpty)
 
   @Test
-  def testForEmptyEntity() = assertEquals(miner.entity.id,Entity.empty())
-
-  @Test
   def testForEntityProps() = {
-    assertEquals(miner.entity.id,0L)
-    assertEquals(miner.entity.category,"")
     assertEquals(miner.entity.price,"")
     assertEquals(miner.entity.squareMeter,"")
     assertEquals(miner.entity.rooms,0)
@@ -78,9 +73,6 @@ class MinerEmptyTest {
     assertEquals(miner.entity.houseDesc,"")
     assertEquals(miner.entity.contactType,"")
     //    assertEquals(miner.entity.contacts,"")
-    assertEquals(miner.entity.profileUrl,"")
-    assertEquals(miner.entity.summaryHtml,"")
-    assertEquals(miner.entity.profileHtml,"")
 
   }
 }
