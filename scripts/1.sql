@@ -21,5 +21,6 @@ CREATE TABLE `krisha`.`raw_entity` (
   `profile_url`        VARCHAR(100) NOT NULL,
   `summary_html`       TEXT         NOT NULL,
   `profile_html`       TEXT         NOT NULL,
+  `insert_timestamp`   TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC));
