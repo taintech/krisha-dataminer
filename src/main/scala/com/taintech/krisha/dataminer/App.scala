@@ -1,7 +1,6 @@
 package com.taintech.krisha.dataminer
 
 import org.jsoup.Jsoup
-import org.jsoup.nodes.Element
 import org.apache.log4j.LogManager
 import akka.actor.{Props, ActorSystem}
 import com.taintech.krisha.dataminer.actors.DB
@@ -21,7 +20,7 @@ object App {
   def main(args: Array[String]) {
     logger.info("App started!")
     val system = ActorSystem()
-    val db = system.actorOf(Props[DB],"db")
+    val db = system.actorOf(Props[DB], "db")
     logger.info("Actors are started.")
     for (i <- 1 to 67) {
       val url1 = Constants.APARTMENTS_LIST_PAGE_URL.format(i)
@@ -35,15 +34,15 @@ object App {
           val item = iterator.next()
           Thread.sleep(100L)
           val url2 = item.select(".title a").attr("href")
-          logger.info("opening profile url:"+url2)
+          logger.info("opening profile url:" + url2)
           if (isValidUrl(url2)) try {
             db ! Miner(item, Jsoup.connect(url2).get()).entity
           } catch {
-            case e: Exception => logger.error("Problem with profile page.",e)
+            case e: Exception => logger.error("Problem with profile page.", e)
           }
         }
       } catch {
-        case e: Exception => logger.error("Problem with list page.",e)
+        case e: Exception => logger.error("Problem with list page.", e)
       }
     }
     system.shutdown()

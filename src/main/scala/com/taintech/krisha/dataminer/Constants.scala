@@ -7,7 +7,7 @@ package com.taintech.krisha.dataminer
  * Time: 13:52
  */
 object Constants {
-//  val SNIPPET_FOLDER = "D:\\development\\krisha-dataminer\\snippets\\"
+  //  val SNIPPET_FOLDER = "D:\\development\\krisha-dataminer\\snippets\\"
   val SNIPPET_FOLDER = "/Users/taintech/development/krisha-dataminer/snippets/"
   val APARTMENTS_LIST_URL = "http://krisha.kz/prodazha/kvartiry/"
   val APARTMENTS_LIST_PAGE_URL = "http://krisha.kz/prodazha/kvartiry/?page=%s"

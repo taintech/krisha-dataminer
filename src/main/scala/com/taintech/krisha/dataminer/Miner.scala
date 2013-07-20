@@ -28,19 +28,19 @@ class Miner(val item: Element, val profile: Document) {
       def extract(prop: String, tr: Element) = prop -> Some(tr.select("td").last().text().trim)
     } catch {
       case e: NullPointerException => logger.warn("null textMap url:" + profile.baseUri())
-      case e: Exception => logger.error("Unknown Error url:" + profile.baseUri(),e)
+      case e: Exception => logger.error("Unknown Error url:" + profile.baseUri(), e)
     }
     map
   }
 
-  val addressArray = try{
+  val addressArray = try {
     val res = item.select("div.title a").attr("title").split(",").to[scala.collection.mutable.ArrayBuffer]
-    while(res.size != 3 && !(res.size>3) ) res+=""
+    while (res.size != 3 && !(res.size > 3)) res += ""
     res.toArray
-  }catch {
+  } catch {
     case e: Exception => {
-      logger.error("Unknown Error url:" + item.baseUri() + " profile url:" + profile.baseUri(),e)
-      Array("","","")
+      logger.error("Unknown Error url:" + item.baseUri() + " profile url:" + profile.baseUri(), e)
+      Array("", "", "")
     }
   }
 
@@ -52,25 +52,25 @@ class Miner(val item: Element, val profile: Document) {
       None
     }
     case e: Exception => {
-      logger.error("Unknown Error url:" + item.baseUri() + " profile url:" + profile.baseUri(),e)
+      logger.error("Unknown Error url:" + item.baseUri() + " profile url:" + profile.baseUri(), e)
       None
     }
   }
 
   val postDate = try {
     Some(item.select("div.descr small.gray span.gray.air").last.text())
-  }catch {
+  } catch {
     case e: Exception => {
-      logger.error("Unknown Error url:" + item.baseUri() + " profile url:" + profile.baseUri(),e)
+      logger.error("Unknown Error url:" + item.baseUri() + " profile url:" + profile.baseUri(), e)
       None
     }
   }
 
   val contactType = try {
     Some(profile.select("table.fullInfo tbody tr.owner td.name").text())
-  }catch {
+  } catch {
     case e: Exception => {
-      logger.error("Unknown Error url:" + item.baseUri() + " profile url:" + profile.baseUri(),e)
+      logger.error("Unknown Error url:" + item.baseUri() + " profile url:" + profile.baseUri(), e)
       None
     }
   }
@@ -85,7 +85,7 @@ class Miner(val item: Element, val profile: Document) {
       profile.baseUri(), item.toString, profile.select("div.content").toString
     )
 
-  def textMapWrapper(key: String) = if(textMap.contains(key)) textMap(key) else None
+  def textMapWrapper(key: String) = if (textMap.contains(key)) textMap(key) else None
 }
 
 object Miner {

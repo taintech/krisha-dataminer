@@ -4,7 +4,6 @@ import java.io.File
 import org.jsoup.Jsoup
 import Constants._
 import org.jsoup.nodes.{Element, Document}
-import java.sql.DriverManager
 
 /**
  * Author: Rinat Tainov
@@ -14,11 +13,12 @@ import java.sql.DriverManager
  */
 object Utils {
   def parseSnippet(fileName: String): Element = {
-    val input = new File(SNIPPET_FOLDER+fileName)
-    Jsoup.parse(input,"UTF-8", APARTMENTS_LIST_URL)
+    val input = new File(SNIPPET_FOLDER + fileName)
+    Jsoup.parse(input, "UTF-8", APARTMENTS_LIST_URL)
   }
+
   def parseSnippet(fileName: String, baseUrl: String): Document = {
-    val input = new File(SNIPPET_FOLDER+fileName)
-    Jsoup.parse(input,"UTF-8", baseUrl)
+    val input = new File(SNIPPET_FOLDER + fileName)
+    Jsoup.parse(input, "UTF-8", baseUrl)
   }
 }

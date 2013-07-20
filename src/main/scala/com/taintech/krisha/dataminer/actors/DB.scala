@@ -2,7 +2,6 @@ package com.taintech.krisha.dataminer.actors
 
 import com.taintech.krisha.dataminer.Entity
 import akka.actor.Actor
-import akka.event.Logging
 import java.sql.{PreparedStatement, Connection, DriverManager}
 import DB._
 import org.apache.log4j.LogManager
@@ -13,17 +12,17 @@ import org.apache.log4j.LogManager
  * Date: 7/20/13
  * Time: 2:22 PM
  */
-class DB extends Actor{
+class DB extends Actor {
   val logger = LogManager.getLogger(DB.getClass)
   var conn: Connection = null
   var stmt: PreparedStatement = null
 
-  override def preStart(){
+  override def preStart() {
     conn = createConnection
     stmt = conn.prepareStatement(INSERT_QUERY)
   }
 
-  override def postStop(){
+  override def postStop() {
     stmt.close()
     conn.close()
   }
@@ -38,7 +37,7 @@ class DB extends Actor{
     case _ ⇒ logger.warn("received unknown message")
   }
 
-  def save(entity: Entity)  = try {
+  def save(entity: Entity) = try {
     stmt.setLong(1, entity.id)
     stmt.setString(2, entity.category)
     stmt.setString(3, entity.price)
@@ -58,15 +57,17 @@ class DB extends Actor{
     stmt.setString(17, entity.profileHtml)
     stmt.executeUpdate()
   } catch {
-    case e: Exception => logger.error("Error saving entity.",e)
+    case e: Exception => logger.error("Error saving entity.", e)
   }
 }
 
-object DB{
+object DB {
   val INSERT_QUERY = "INSERT INTO raw_entity (raw_id ,  category ,  price ,  square_meter ,  rooms ,  city ,  region ,  address ,  post_date ,  internal_condition ,  floor ,  house_desc ,  contact_type ,  contacts ,  profile_url ,  summary_html ,  profile_html ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
   val url = "jdbc:mysql://localhost:3306/"
   Class.forName("com.mysql.jdbc.Driver").newInstance()
-  def createConnection: Connection = DB.createConnection("krisha?useUnicode=true&characterEncoding=UTF-8","krisha","krisha")
-  def createConnection(schema:String, user:String, pwd:String): Connection = DriverManager.getConnection(url + schema, user, pwd)
+
+  def createConnection: Connection = DB.createConnection("krisha?useUnicode=true&characterEncoding=UTF-8", "krisha", "krisha")
+
+  def createConnection(schema: String, user: String, pwd: String): Connection = DriverManager.getConnection(url + schema, user, pwd)
 
 }
