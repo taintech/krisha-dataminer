@@ -130,3 +130,12 @@ class DBActorTest {
 }
 
 
+@Test
+class ConstantsTest{
+  @Test
+  def testApartmentsUrls = {
+    APARTMENTS_LIST_PAGE_URLS foreach println
+  }
+}
+
+
