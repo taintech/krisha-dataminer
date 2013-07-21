@@ -96,6 +96,7 @@ object Miner {
 
   def extractIdFromUrl(url: String) = url.split("/").last.toLong
 
+  //TODO bug with category, must return kvartiry
   def extractCategoryFromUrl(url: String) = {
     if (!url.contains("?")) url.split("/").last
     else url.split("/").reverse(1)
