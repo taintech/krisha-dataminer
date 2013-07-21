@@ -62,7 +62,7 @@ class DB extends Actor {
 }
 
 object DB {
-  val INSERT_QUERY = "INSERT INTO raw_entity_test (raw_id ,  category ,  price ,  square_meter ,  rooms ,  city ,  region ,  address ,  post_date ,  internal_condition ,  floor ,  house_desc ,  contact_type ,  contacts ,  profile_url ,  summary_html ,  profile_html ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+  val INSERT_QUERY = "INSERT INTO raw_entity (raw_id ,  category ,  price ,  square_meter ,  rooms ,  city ,  region ,  address ,  post_date ,  internal_condition ,  floor ,  house_desc ,  contact_type ,  contacts ,  profile_url ,  summary_html ,  profile_html ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
   val url = "jdbc:mysql://localhost:3306/"
   Class.forName("com.mysql.jdbc.Driver").newInstance()
 
