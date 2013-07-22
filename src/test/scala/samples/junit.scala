@@ -88,7 +88,8 @@ class FunctionsTest {
   @Test
   def testCategoryExtractor = assertEquals(Miner.extractCategoryFromUrl(APARTMENTS_LIST_URL), "kvartiry")
 
-  def testCategoryExtractorForSecondPage = assertEquals(Miner.extractCategoryFromUrl("http://krisha.kz/prodazha/kvartiry/?page=2"), "kvartiry")
+  @Test
+  def testCategoryExtractorForSecondPage = assertEquals(Miner.extractCategoryFromUrl(APARTMENTS_LIST_URLS_PATTERN), "kvartiry")
 }
 
 

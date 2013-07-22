@@ -99,6 +99,6 @@ object Miner {
   //TODO bug with category, must return kvartiry
   def extractCategoryFromUrl(url: String) = {
     if (!url.contains("?")) url.split("/").last
-    else url.split("/").reverse(1)
+    else url.split("/").reverse(2)
   }
 }
