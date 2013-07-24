@@ -20,6 +20,7 @@ object App {
 
   def main(args: Array[String]) {
     //TODO write to log execution time
+    //TODO write each thousand rows log
     logger.info("App started!")
     val system = ActorSystem()
     logger.info("Actors are started.")
