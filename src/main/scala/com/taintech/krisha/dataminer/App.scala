@@ -21,6 +21,7 @@ object App {
   def main(args: Array[String]) {
     //TODO write to log execution time
     //TODO write each thousand rows log
+    //TODO bug with empty url "opening profile url: "
     logger.info("App started!")
     val system = ActorSystem()
     logger.info("Actors are started.")
